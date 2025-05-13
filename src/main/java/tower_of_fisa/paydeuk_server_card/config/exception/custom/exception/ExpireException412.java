@@ -1,9 +1,9 @@
 package tower_of_fisa.paydeuk_server_card.config.exception.custom.exception;
 
-import tower_of_fisa.paydeuk_server_card.common.ErrorDefineCode;
-import tower_of_fisa.paydeuk_server_card.config.exception.custom.BasicCustomException500;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import tower_of_fisa.paydeuk_server_card.common.ErrorDefineCode;
+import tower_of_fisa.paydeuk_server_card.config.exception.custom.BasicCustomException500;
 
 /** 412 : 시간이 만료된 자원에 접근할 때 */
 @ResponseStatus(HttpStatus.PRECONDITION_FAILED)

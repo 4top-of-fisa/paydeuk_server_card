@@ -6,8 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class PaydeukServerCardApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(PaydeukServerCardApplication.class, args);
-	}
-
+  public static void main(String[] args) {
+    SpringApplication.run(PaydeukServerCardApplication.class, args);
+  }
 }

@@ -1,15 +1,5 @@
 package tower_of_fisa.paydeuk_server_card.example.controller;
 
-import tower_of_fisa.paydeuk_server_card.common.ErrorDefineCode;
-import tower_of_fisa.paydeuk_server_card.common.response.CommonResponse;
-import tower_of_fisa.paydeuk_server_card.common.response.SwaggerErrorResponseType;
-import tower_of_fisa.paydeuk_server_card.config.exception.custom.exception.ForbiddenException403;
-import tower_of_fisa.paydeuk_server_card.config.exception.custom.exception.NoSuchElementFoundException404;
-import tower_of_fisa.paydeuk_server_card.config.exception.custom.exception.UnsupportedMediaTypeException415;
-import tower_of_fisa.paydeuk_server_card.example.dto.ExampleRequest;
-import tower_of_fisa.paydeuk_server_card.example.dto.ExampleResponse;
-import tower_of_fisa.paydeuk_server_card.example.dto.ExampleValidationRequest;
-import tower_of_fisa.paydeuk_server_card.example.service.ExampleService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -23,6 +13,16 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import tower_of_fisa.paydeuk_server_card.common.ErrorDefineCode;
+import tower_of_fisa.paydeuk_server_card.common.response.CommonResponse;
+import tower_of_fisa.paydeuk_server_card.common.response.SwaggerErrorResponseType;
+import tower_of_fisa.paydeuk_server_card.config.exception.custom.exception.ForbiddenException403;
+import tower_of_fisa.paydeuk_server_card.config.exception.custom.exception.NoSuchElementFoundException404;
+import tower_of_fisa.paydeuk_server_card.config.exception.custom.exception.UnsupportedMediaTypeException415;
+import tower_of_fisa.paydeuk_server_card.example.dto.ExampleRequest;
+import tower_of_fisa.paydeuk_server_card.example.dto.ExampleResponse;
+import tower_of_fisa.paydeuk_server_card.example.dto.ExampleValidationRequest;
+import tower_of_fisa.paydeuk_server_card.example.service.ExampleService;
 
 @Tag(name = "EXAM API", description = "예제와 관련된 API") // Swagger Docs : API 이름
 @RestController
