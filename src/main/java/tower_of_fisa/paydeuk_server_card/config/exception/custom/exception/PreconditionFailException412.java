@@ -1,7 +1,7 @@
 package tower_of_fisa.paydeuk_server_card.config.exception.custom.exception;
 
-import com.tower_of_fisa.paydeuk_server_service.common.ErrorDefineCode;
-import com.tower_of_fisa.paydeuk_server_service.config.exception.custom.BasicCustomException500;
+import tower_of_fisa.paydeuk_server_card.common.ErrorDefineCode;
+import tower_of_fisa.paydeuk_server_card.config.exception.custom.BasicCustomException500;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 

@@ -1,8 +1,8 @@
 package tower_of_fisa.paydeuk_server_card.config.exception.global;
 
-import com.tower_of_fisa.paydeuk_server_service.common.ErrorDefineCode;
-import com.tower_of_fisa.paydeuk_server_service.common.response.CommonError;
-import com.tower_of_fisa.paydeuk_server_service.common.response.CommonResponse;
+import tower_of_fisa.paydeuk_server_card.common.ErrorDefineCode;
+import tower_of_fisa.paydeuk_server_card.common.response.CommonError;
+import tower_of_fisa.paydeuk_server_card.common.response.CommonResponse;
 import io.swagger.v3.oas.annotations.Hidden;
 import java.time.LocalDateTime;
 import lombok.NonNull;
@@ -13,7 +13,6 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.AccessDeniedException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -105,15 +104,5 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     log.error("Internal error occurred", exception);
     return buildErrorResponse(
         exception, ErrorDefineCode.UNCAUGHT, HttpStatus.INTERNAL_SERVER_ERROR);
-  }
-
-  // 403 Access Denied Exception
-  @ExceptionHandler(AccessDeniedException.class)
-  @Hidden
-  @ResponseStatus(HttpStatus.FORBIDDEN) // 403 Forbidden
-  public ResponseEntity<Object> handleAccessDeniedException(
-      AccessDeniedException exception, WebRequest request) {
-    log.error("Access denied", exception);
-    return buildErrorResponse(exception, ErrorDefineCode.AUTHENTICATE_FAIL, HttpStatus.FORBIDDEN);
   }
 }

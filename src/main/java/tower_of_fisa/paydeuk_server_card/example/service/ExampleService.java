@@ -1,11 +1,11 @@
 package tower_of_fisa.paydeuk_server_card.example.service;
 
-import com.tower_of_fisa.paydeuk_server_service.common.ErrorDefineCode;
-import com.tower_of_fisa.paydeuk_server_service.config.exception.custom.exception.AlreadyExistElementException409;
-import com.tower_of_fisa.paydeuk_server_service.domain.entity.Example;
-import com.tower_of_fisa.paydeuk_server_service.example.dto.ExampleRequest;
-import com.tower_of_fisa.paydeuk_server_service.example.dto.ExampleResponse;
-import com.tower_of_fisa.paydeuk_server_service.example.repository.ExampleRepository;
+import tower_of_fisa.paydeuk_server_card.common.ErrorDefineCode;
+import tower_of_fisa.paydeuk_server_card.config.exception.custom.exception.AlreadyExistElementException409;
+import tower_of_fisa.paydeuk_server_card.domain.entity.Example;
+import tower_of_fisa.paydeuk_server_card.example.dto.ExampleRequest;
+import tower_of_fisa.paydeuk_server_card.example.dto.ExampleResponse;
+import tower_of_fisa.paydeuk_server_card.example.repository.ExampleRepository;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;

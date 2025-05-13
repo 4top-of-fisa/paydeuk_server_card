@@ -1,6 +1,6 @@
 package tower_of_fisa.paydeuk_server_card.example.repository;
 
-import com.tower_of_fisa.paydeuk_server_service.domain.entity.Example;
+import tower_of_fisa.paydeuk_server_card.domain.entity.Example;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

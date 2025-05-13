@@ -1,7 +1,7 @@
 package tower_of_fisa.paydeuk_server_card.config.exception.custom;
 
-import com.tower_of_fisa.paydeuk_server_service.common.ErrorDefineCode;
 import lombok.Getter;
+import tower_of_fisa.paydeuk_server_card.common.ErrorDefineCode;
 
 @Getter
 public class BasicCustomException500 extends RuntimeException {

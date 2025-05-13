@@ -1,6 +1,5 @@
 package tower_of_fisa.paydeuk_server_card.config.exception.custom;
 
-import com.tower_of_fisa.paydeuk_server_service.config.exception.global.GlobalExceptionHandler;
 import io.swagger.v3.oas.annotations.Hidden;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -8,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
+import tower_of_fisa.paydeuk_server_card.config.exception.global.GlobalExceptionHandler;
 
 @Slf4j(topic = "EXCEPTION_HANDLER")
 @RestControllerAdvice
