@@ -2,10 +2,13 @@ name: Format
 
 on:
   push:
-    branches: [ ** ]
+    branches:
+      - "**"
 
+permissions:
+  contents: write
+  
 jobs:
-
   formatting:
     runs-on: ubuntu-latest
     steps:
