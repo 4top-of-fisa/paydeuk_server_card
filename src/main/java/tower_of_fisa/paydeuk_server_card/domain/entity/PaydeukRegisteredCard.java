@@ -11,13 +11,12 @@ import tower_of_fisa.paydeuk_server_card.common.BaseEntity;
 @Entity
 @Table(name = "paydeuk_registered_card")
 public class PaydeukRegisteredCard extends BaseEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
-    private Long id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column(name = "id", nullable = false)
+  private Long id;
 
-    @Size(max = 30)
-    @Column(name = "card_token", length = 30)
-    private String cardToken;
-
+  @Size(max = 30)
+  @Column(name = "card_token", length = 30)
+  private String cardToken;
 }

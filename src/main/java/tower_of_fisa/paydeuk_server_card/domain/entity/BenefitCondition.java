@@ -12,29 +12,27 @@ import tower_of_fisa.paydeuk_server_card.domain.enums.ValueType;
 @Entity
 @Table(name = "benefit_condition")
 public class BenefitCondition extends BaseEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
-    private Long id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column(name = "id", nullable = false)
+  private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "benefit_id")
-    private Benefit benefit;
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "benefit_id")
+  private Benefit benefit;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "condition_category", nullable = false)
-    private BenefitConditionCategory conditionCategory;
+  @Enumerated(EnumType.STRING)
+  @Column(name = "condition_category", nullable = false)
+  private BenefitConditionCategory conditionCategory;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "previous_month_spending_range_id")
-    private PreviousMonthSpendingRange previousMonthSpendingRange;
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "previous_month_spending_range_id")
+  private PreviousMonthSpendingRange previousMonthSpendingRange;
 
+  @Enumerated(EnumType.STRING)
+  @Column(name = "value_type", nullable = false)
+  private ValueType valueType;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "value_type", nullable = false)
-    private ValueType valueType;
-
-    @Column(name = "value")
-    private Long value;
-
+  @Column(name = "value")
+  private Long value;
 }
