@@ -2,11 +2,9 @@ package tower_of_fisa.paydeuk_server_card.domain.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
-import lombok.Setter;
 import tower_of_fisa.paydeuk_server_card.common.BaseEntity;
 
 @Getter
-@Setter
 @Entity
 @Table(name = "card_benefit")
 public class CardBenefit extends BaseEntity {

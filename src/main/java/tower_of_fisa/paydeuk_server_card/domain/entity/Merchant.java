@@ -3,12 +3,10 @@ package tower_of_fisa.paydeuk_server_card.domain.entity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
-import lombok.Setter;
 import tower_of_fisa.paydeuk_server_card.common.BaseEntity;
 import tower_of_fisa.paydeuk_server_card.domain.enums.MerchantCategory;
 
 @Getter
-@Setter
 @Entity
 @Table(name = "merchant")
 public class Merchant extends BaseEntity {
@@ -24,7 +22,6 @@ public class Merchant extends BaseEntity {
     @Enumerated(EnumType.STRING)
     @Column(name = "category", nullable = false)
     private MerchantCategory category;
-
 
 
 }

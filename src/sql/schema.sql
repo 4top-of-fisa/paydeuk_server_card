@@ -35,7 +35,7 @@ CREATE TABLE customer (
 
 CREATE TABLE paydeuk_registered_card (
                                          id BIGINT AUTO_INCREMENT PRIMARY KEY,
-                                         card_token VARCHAR(30),
+                                         card_token VARCHAR(100),
                                          created_at TIMESTAMP,
                                          updated_at TIMESTAMP
 );

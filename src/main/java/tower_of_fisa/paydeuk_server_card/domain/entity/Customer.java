@@ -3,11 +3,9 @@ package tower_of_fisa.paydeuk_server_card.domain.entity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
-import lombok.Setter;
 import tower_of_fisa.paydeuk_server_card.common.BaseEntity;
 
 @Getter
-@Setter
 @Entity
 @Table(name = "customer")
 public class Customer extends BaseEntity {
