@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import tower_of_fisa.paydeuk_server_card.common.BaseEntity;
 import tower_of_fisa.paydeuk_server_card.domain.enums.BenefitConditionCategory;
-import tower_of_fisa.paydeuk_server_card.domain.enums.ValueType;
 
 @Getter
 @Entity
@@ -22,15 +21,11 @@ public class BenefitCondition extends BaseEntity {
   @Column(name = "condition_category", nullable = false)
   private BenefitConditionCategory conditionCategory;
 
-  @Enumerated(EnumType.STRING)
-  @Column(name = "value_type", nullable = false)
-  private ValueType valueType;
-
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "benefit_id")
   private Benefit benefit;
 
   @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "previous_month_spending_range_id")
-  private PreviousMonthSpendingRange previousMonthSpendingRange;
+  @JoinColumn(name = "spending_range_id", nullable = true)
+  private SpendingRange spendingRange;
 }

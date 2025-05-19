@@ -16,8 +16,12 @@ public class Benefit extends BaseEntity {
   private Long id;
 
   @Size(max = 100)
-  @Column(name = "benefit_name", length = 100)
-  private String benefitName;
+  @Column(name = "title", length = 100)
+  private String benefitTitle;
+
+  @Size(max = 100)
+  @Column(name = "description", length = 100)
+  private String benefitDescription;
 
   @Column(name = "has_additional_conditions")
   private Boolean hasAdditionalConditions;

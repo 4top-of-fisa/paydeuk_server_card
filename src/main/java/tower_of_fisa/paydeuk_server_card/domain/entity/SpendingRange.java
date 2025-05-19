@@ -6,8 +6,8 @@ import tower_of_fisa.paydeuk_server_card.common.BaseEntity;
 
 @Getter
 @Entity
-@Table(name = "previous_month_spending_range")
-public class PreviousMonthSpendingRange extends BaseEntity {
+@Table(name = "spending_range")
+public class SpendingRange extends BaseEntity {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "id", nullable = false)

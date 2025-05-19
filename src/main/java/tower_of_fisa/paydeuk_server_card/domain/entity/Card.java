@@ -32,6 +32,6 @@ public class Card extends BaseEntity {
   private CardType type;
 
   @Enumerated(EnumType.STRING)
-  @Column(name = "card_company", nullable = false)
+  @Column(name = "company", nullable = false)
   private CardCompany cardCompany;
 }
