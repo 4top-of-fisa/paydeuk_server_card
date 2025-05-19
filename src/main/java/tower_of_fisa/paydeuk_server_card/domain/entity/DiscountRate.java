@@ -27,5 +27,5 @@ public class DiscountRate extends BaseEntity {
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "previous_month_spending_range_id")
-  private PreviousMonthSpendingRange previousMonthSpendingRange;
+  private SpendingRange spendingRange;
 }

@@ -22,20 +22,21 @@ public class IssuedCard extends BaseEntity {
   @Column(name = "cvc", length = 3)
   private String cvc;
 
-  @Size(max = 2)
-  @Column(name = "expiration_year", length = 2)
+  @Size(max = 4)
+  @Column(name = "expiration_year", length = 4)
   private String expirationYear;
 
   @Size(max = 2)
   @Column(name = "expiration_month", length = 2)
   private String expirationMonth;
 
-  @Column(name = "card_password")
-  private Integer cardPassword;
+  @Size(max = 60)
+  @Column(name = "card_password", length = 60)
+  private String cardPassword;
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "user_id")
-  private Customer user;
+  private Users user;
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "card_id")
