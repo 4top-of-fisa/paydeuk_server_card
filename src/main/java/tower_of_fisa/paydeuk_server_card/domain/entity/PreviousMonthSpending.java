@@ -19,5 +19,4 @@ public class PreviousMonthSpending extends BaseEntity {
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "issued_card_id")
   private IssuedCard issuedCard;
-
 }
