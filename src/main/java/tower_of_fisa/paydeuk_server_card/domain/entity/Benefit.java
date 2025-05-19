@@ -28,4 +28,7 @@ public class Benefit extends BaseEntity {
     @Column(name = "has_additional_conditions")
     private Boolean hasAdditionalConditions;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "merchant_id")
+    private Merchant merchant;
 }

@@ -5,22 +5,23 @@ USE paydeuk_server_card;
 
 
 -- Tables
-CREATE TABLE benefit (
-                         id BIGINT AUTO_INCREMENT PRIMARY KEY,
-                         benefit_name VARCHAR(100),
-                         benefit_type ENUM('DISCOUNT', 'POINTS', 'CASHBACK'),
-                         has_additional_conditions BOOLEAN,
-                         created_at TIMESTAMP,
-                         updated_at TIMESTAMP
-);
+
 CREATE TABLE merchant (
                           id BIGINT AUTO_INCREMENT PRIMARY KEY,
                           name VARCHAR(20),
                           category ENUM ('CULTURE', 'FOOD_BEVERAGE', 'SHOPPING', 'SUBSCRIBE', 'TRANSPORTATION'),
-                          benefit_id BIGINT,
                           created_at TIMESTAMP,
-                          updated_at TIMESTAMP,
-                          FOREIGN KEY (benefit_id) REFERENCES benefit(id)
+                          updated_at TIMESTAMP
+);
+CREATE TABLE benefit (
+                         id BIGINT AUTO_INCREMENT PRIMARY KEY,
+                         benefit_name VARCHAR(100),
+                         benefit_type ENUM('DISCOUNT', 'POINTS', 'CASHBACK'),
+                         merchant_id BIGINT,
+                         has_additional_conditions BOOLEAN,
+                         created_at TIMESTAMP,
+                         updated_at TIMESTAMP,
+                         FOREIGN KEY (merchant_id) REFERENCES merchant(id)
 );
 
 CREATE TABLE customer (

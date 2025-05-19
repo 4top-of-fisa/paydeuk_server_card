@@ -25,8 +25,6 @@ public class Merchant extends BaseEntity {
     @Column(name = "category", nullable = false)
     private MerchantCategory category;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "benefit_id")
-    private Benefit benefit;
+
 
 }
