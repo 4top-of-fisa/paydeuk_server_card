@@ -12,23 +12,23 @@ import tower_of_fisa.paydeuk_server_card.domain.enums.BenefitType;
 @Entity
 @Table(name = "benefit")
 public class Benefit extends BaseEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
-    private Long id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column(name = "id", nullable = false)
+  private Long id;
 
-    @Size(max = 100)
-    @Column(name = "benefit_name", length = 100)
-    private String benefitName;
+  @Size(max = 100)
+  @Column(name = "benefit_name", length = 100)
+  private String benefitName;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "benefit_type", nullable = false)
-    private BenefitType benefitType;
+  @Enumerated(EnumType.STRING)
+  @Column(name = "benefit_type", nullable = false)
+  private BenefitType benefitType;
 
-    @Column(name = "has_additional_conditions")
-    private Boolean hasAdditionalConditions;
+  @Column(name = "has_additional_conditions")
+  private Boolean hasAdditionalConditions;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "merchant_id")
-    private Merchant merchant;
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "merchant_id")
+  private Merchant merchant;
 }
