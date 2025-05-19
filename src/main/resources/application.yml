@@ -1,6 +1,6 @@
 spring:
   config:
-    import: application-secret.yml
+    import: application.yml
   datasource:
     url: jdbc:mysql://localhost:3306/paydeuk_server_card?Timezone=Asia/Seoul
     username: root

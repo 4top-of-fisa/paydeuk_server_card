@@ -23,16 +23,16 @@ jobs:
         key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
         restore-keys: ${{ runner.os }}-gradle
 
-    - name: Create application-secret.yaml
-      run: |
-        cat <<EOF > ./src/main/resources/application-secret.yml  
-        iamport:
-          api:
-            key: '${{ secrets.IAMPORT_API_KEY }}'
-            secret: '${{ secrets.IAMPORT_API_SECRET }}'
-        jwt:
-          secret-key: '${{ secrets.JWT_SECRET }}'
-        EOF
+#    - name: Create application-secret.yaml
+#      run: |
+#        cat <<EOF > ./src/main/resources/application-secret.yml
+#        iamport:
+#          api:
+#            key: '${{ secrets.IAMPORT_API_KEY }}'
+#            secret: '${{ secrets.IAMPORT_API_SECRET }}'
+#        jwt:
+#          secret-key: '${{ secrets.JWT_SECRET }}'
+#        EOF
         
     - name: Build
       id: check
