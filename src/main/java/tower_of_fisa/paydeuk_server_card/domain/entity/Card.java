@@ -2,6 +2,8 @@ package tower_of_fisa.paydeuk_server_card.domain.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
 import lombok.Getter;
 import tower_of_fisa.paydeuk_server_card.global.common.BaseEntity;
 import tower_of_fisa.paydeuk_server_card.domain.enums.CardCompany;
@@ -34,4 +36,7 @@ public class Card extends BaseEntity {
   @Enumerated(EnumType.STRING)
   @Column(name = "company", nullable = false)
   private CardCompany cardCompany;
+
+  @OneToMany(mappedBy = "card", cascade = CascadeType.ALL, orphanRemoval = true)
+  private List<CardBenefit> cardBenefits = new ArrayList<>();
 }

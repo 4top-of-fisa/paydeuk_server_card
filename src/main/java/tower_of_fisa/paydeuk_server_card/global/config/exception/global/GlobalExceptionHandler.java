@@ -16,14 +16,13 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import tower_of_fisa.paydeuk_server_card.global.common.ErrorDefineCode;
 import tower_of_fisa.paydeuk_server_card.global.common.response.CommonError;
 import tower_of_fisa.paydeuk_server_card.global.common.response.CommonResponse;
 
 @Slf4j(topic = "EXCEPTION_HANDLER")
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
-
-  public static final String TRACE = "trace";
 
   @Value("${error.printStackTrace}")
   private boolean printStackTrace;
@@ -99,10 +98,21 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
   @ExceptionHandler(Exception.class)
   @Hidden
   @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-  public ResponseEntity<Object> handleAllUncaughtException(
-      Exception exception, WebRequest request) {
+  public ResponseEntity<Object> handleAllUncaughtException(Exception exception) {
     log.error("Internal error occurred", exception);
     return buildErrorResponse(
         exception, ErrorDefineCode.UNCAUGHT, HttpStatus.INTERNAL_SERVER_ERROR);
+  }
+
+  @ExceptionHandler(MethodArgumentTypeMismatchException.class)
+  @ResponseStatus(HttpStatus.NOT_FOUND)
+  public ResponseEntity<Object> handleEnumTypeMismatch(MethodArgumentTypeMismatchException ex) {
+    Class<?> requiredType = ex.getRequiredType();
+
+    if (requiredType != null && requiredType.isEnum() && "cardCompany".equals(ex.getName())) {
+      return buildErrorResponse(ex, ErrorDefineCode.CARD_COMPANY_NOT_FOUND, HttpStatus.NOT_FOUND);
+    }
+
+    return buildErrorResponse(ex, ErrorDefineCode.UNCAUGHT, HttpStatus.BAD_REQUEST);
   }
 }
