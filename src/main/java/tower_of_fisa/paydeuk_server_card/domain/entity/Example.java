@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import tower_of_fisa.paydeuk_server_card.common.BaseEntity;
+import tower_of_fisa.paydeuk_server_card.global.common.BaseEntity;
 
 @Entity
 @Table(name = "EXAMPLE")

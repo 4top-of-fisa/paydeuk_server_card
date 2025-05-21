@@ -1,4 +1,4 @@
-package tower_of_fisa.paydeuk_server_card.config;
+package tower_of_fisa.paydeuk_server_card.global.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;

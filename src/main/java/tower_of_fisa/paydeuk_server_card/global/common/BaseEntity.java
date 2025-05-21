@@ -1,4 +1,4 @@
-package tower_of_fisa.paydeuk_server_card.common;
+package tower_of_fisa.paydeuk_server_card.global.common;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.EntityListeners;
