@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import tower_of_fisa.paydeuk_server_card.card.dto.CardInfoResponse;
 import tower_of_fisa.paydeuk_server_card.card.service.CardService;
-import tower_of_fisa.paydeuk_server_card.common.response.CommonResponse;
-import tower_of_fisa.paydeuk_server_card.common.response.swagger_response.SwaggerResponseExample;
+import tower_of_fisa.paydeuk_server_card.global.common.response.CommonResponse;
+import tower_of_fisa.paydeuk_server_card.global.common.response.swagger_response.SwaggerResponseExample;
 import tower_of_fisa.paydeuk_server_card.domain.enums.CardCompany;
 
 @Tag(name = "카드사 API", description = "카드사 API")
