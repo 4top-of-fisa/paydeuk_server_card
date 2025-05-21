@@ -105,15 +105,13 @@ CREATE TABLE benefit_condition
 
 CREATE TABLE discount_rate
 (
-    id                               BIGINT AUTO_INCREMENT PRIMARY KEY NOT NULL,
-    benefit_id                       BIGINT                            NOT NULL,
-    previous_month_spending_range_id BIGINT                            NOT NULL,
-    category                         ENUM ('RATE', 'AMOUNT')           NOT NULL,
-    discount_amount                  FLOAT                             NOT NULL,
-    created_at                       TIMESTAMP,
-    updated_at                       TIMESTAMP,
+    id                BIGINT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+    benefit_id        BIGINT                            NOT NULL,
+    spending_range_id BIGINT                            NOT NULL,
+    apply_type        ENUM ('RATE', 'AMOUNT')           NOT NULL,
+    amount            FLOAT                             NOT NULL,
     FOREIGN KEY (benefit_id) REFERENCES benefit (id),
-    FOREIGN KEY (previous_month_spending_range_id) REFERENCES spending_range (id)
+    FOREIGN KEY (spending_range_id) REFERENCES spending_range (id)
 );
 
 CREATE TABLE card_benefit

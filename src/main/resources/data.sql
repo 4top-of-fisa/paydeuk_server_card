@@ -127,15 +127,14 @@ VALUES (2, NULL, 10000, 'MONTHLY_DISCOUNT_LIMIT', NOW(), NOW()), -- 현대카드
 -- 신한카드 Mr.Life TIME 할인 이마트
 
 -- DISCOUNT_RATE TABLE (할인율)
-INSERT INTO discount_rate (benefit_id, previous_month_spending_range_id, category, discount_amount, created_at,
-                           updated_at)
-VALUES (1, 1, 'RATE', 1.5, NOW(), NOW()), -- 현대카드 M 기본혜택 전가맹점
-       (2, 2, 'RATE', 5, NOW(), NOW()),   -- 현대카드 M 추가혜택 컬리
-       (3, 2, 'RATE', 5, NOW(), NOW()),   -- 현대카드 M 추가혜택 쿠팡
-       (4, 2, 'RATE', 5, NOW(), NOW()),   -- 현대카드 M 추가혜택 이마트
-       (5, 5, 'RATE', 10, NOW(), NOW()),  -- 신한카드 Mr.Life TIME 할인 스타벅스
-       (6, 5, 'RATE', 10, NOW(), NOW()),  -- 신한카드 Mr.Life TIME 할인 쿠팡
-       (7, 5, 'RATE', 10, NOW(), NOW());
+INSERT INTO discount_rate (benefit_id, spending_range_id, apply_type, amount)
+VALUES (1, 1, 'RATE', 1.5), -- 현대카드 M 기본혜택 전가맹점
+       (2, 2, 'RATE', 5),   -- 현대카드 M 추가혜택 컬리
+       (3, 2, 'RATE', 5),   -- 현대카드 M 추가혜택 쿠팡
+       (4, 2, 'RATE', 5),   -- 현대카드 M 추가혜택 이마트
+       (5, 5, 'RATE', 10),  -- 신한카드 Mr.Life TIME 할인 스타벅스
+       (6, 5, 'RATE', 10),  -- 신한카드 Mr.Life TIME 할인 쿠팡
+       (7, 5, 'RATE', 10);
 -- 신한카드 Mr.Life TIME 할인 이마트
 
 
