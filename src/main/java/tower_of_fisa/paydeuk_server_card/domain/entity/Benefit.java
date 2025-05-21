@@ -2,12 +2,11 @@ package tower_of_fisa.paydeuk_server_card.domain.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
 import lombok.Getter;
 import tower_of_fisa.paydeuk_server_card.common.BaseEntity;
 import tower_of_fisa.paydeuk_server_card.domain.enums.BenefitType;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Getter
 @Entity
