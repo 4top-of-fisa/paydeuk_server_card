@@ -2,6 +2,8 @@ package tower_of_fisa.paydeuk_server_card.domain.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
 import lombok.Getter;
 import tower_of_fisa.paydeuk_server_card.common.BaseEntity;
 import tower_of_fisa.paydeuk_server_card.domain.enums.BenefitType;
@@ -33,4 +35,10 @@ public class Benefit extends BaseEntity {
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "merchant_id")
   private Merchant merchant;
+
+  @OneToMany(mappedBy = "benefit", cascade = CascadeType.ALL, orphanRemoval = true)
+  private List<BenefitCondition> benefitConditions = new ArrayList<>();
+
+  @OneToMany(mappedBy = "benefit", cascade = CascadeType.ALL, orphanRemoval = true)
+  private List<DiscountRate> discountRates = new ArrayList<>();
 }
