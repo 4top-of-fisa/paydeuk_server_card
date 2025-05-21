@@ -2,8 +2,8 @@ package tower_of_fisa.paydeuk_server_card.domain.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
-import tower_of_fisa.paydeuk_server_card.common.BaseEntity;
 import tower_of_fisa.paydeuk_server_card.domain.enums.PaymentService;
+import tower_of_fisa.paydeuk_server_card.global.common.BaseEntity;
 
 @Getter
 @Entity
@@ -22,7 +22,7 @@ public class IssuedCardToken extends BaseEntity {
   @JoinColumn(name = "issued_card_id")
   private IssuedCard issuedCard;
 
-  @ManyToOne(fetch = FetchType.LAZY)
+  @OneToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "paydeuk_registered_card_id")
   private PaydeukRegisteredCard paydeukRegisteredCard;
 }

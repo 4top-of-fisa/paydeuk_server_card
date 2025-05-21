@@ -2,8 +2,10 @@ package tower_of_fisa.paydeuk_server_card.domain.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
 import lombok.Getter;
-import tower_of_fisa.paydeuk_server_card.common.BaseEntity;
+import tower_of_fisa.paydeuk_server_card.global.common.BaseEntity;
 
 @Getter
 @Entity
@@ -41,4 +43,7 @@ public class IssuedCard extends BaseEntity {
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "card_id")
   private Card card;
+
+  @OneToMany(mappedBy = "issuedCard", cascade = CascadeType.ALL, orphanRemoval = true)
+  private List<IssuedCardToken> issuedCardTokenList = new ArrayList<>();
 }

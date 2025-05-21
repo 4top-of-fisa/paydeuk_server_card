@@ -3,7 +3,7 @@ package tower_of_fisa.paydeuk_server_card.domain.entity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
-import tower_of_fisa.paydeuk_server_card.common.BaseEntity;
+import tower_of_fisa.paydeuk_server_card.global.common.BaseEntity;
 
 @Getter
 @Entity
@@ -17,4 +17,7 @@ public class PaydeukRegisteredCard extends BaseEntity {
   @Size(max = 100)
   @Column(name = "card_token", length = 100)
   private String cardToken;
+
+  @OneToOne(mappedBy = "paydeukRegisteredCard")
+  private IssuedCardToken issuedCardToken;
 }
