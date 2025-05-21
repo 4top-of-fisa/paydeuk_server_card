@@ -15,6 +15,9 @@ public enum ErrorDefineCode {
   AUTHENTICATE_FAIL("AUT_02", "권한 인증에 실패했습니다."),
   ACCESSTOKEN_EXPIRED("AUT_03", "Access Token이 만료되었습니다."),
   CARD_COMPANY_NOT_FOUND("CC_ERR_01", "해당 카드사가 존재하지 않습니다."),
+  CARD_NOT_FOUND("CARD_ERR_01", "카드 정보가 존재하지 않습니다."),
+  CARD_OWNER_MISMATCH("CARD_ERR_02", "카드 소유자가 아닙니다."),
+  INVALID_CARD("CARD_ERR_03", "카드 정보가 유효하지 않습니다."),
   ;
 
   private final String code;
