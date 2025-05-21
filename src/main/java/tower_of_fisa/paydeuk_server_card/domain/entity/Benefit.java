@@ -5,8 +5,8 @@ import jakarta.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.Getter;
-import tower_of_fisa.paydeuk_server_card.global.common.BaseEntity;
 import tower_of_fisa.paydeuk_server_card.domain.enums.BenefitType;
+import tower_of_fisa.paydeuk_server_card.global.common.BaseEntity;
 
 @Getter
 @Entity

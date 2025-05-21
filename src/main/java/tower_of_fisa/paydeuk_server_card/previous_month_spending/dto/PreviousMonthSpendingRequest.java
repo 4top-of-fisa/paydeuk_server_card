@@ -7,10 +7,9 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor
-@Schema(title = "PreviousMonthSpendingRequest : 전월 실적 조회 [요청 DTO]",
-        description = "요청 데이터")
+@Schema(title = "PreviousMonthSpendingRequest : 전월 실적 조회 [요청 DTO]", description = "요청 데이터")
 public class PreviousMonthSpendingRequest {
-    @Schema(description = "카드 토큰", example = "tok_1234567890abcdef")
-    @NotNull(message = "cardToken은 필수입니다.")
-    private String cardToken;
+  @Schema(description = "카드 토큰", example = "tok_1234567890abcdef")
+  @NotNull(message = "cardToken은 필수입니다.")
+  private String cardToken;
 }

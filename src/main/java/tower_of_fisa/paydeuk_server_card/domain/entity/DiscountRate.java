@@ -3,6 +3,7 @@ package tower_of_fisa.paydeuk_server_card.domain.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import tower_of_fisa.paydeuk_server_card.domain.enums.DiscountApplyType;
+import tower_of_fisa.paydeuk_server_card.global.common.BaseEntity;
 
 @Getter
 @Entity
