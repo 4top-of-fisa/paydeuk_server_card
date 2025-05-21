@@ -22,6 +22,6 @@ public class Users extends BaseEntity {
   @Column(name = "phone_number", length = 20)
   private String phoneNumber;
 
-  @Column(name = "birthdate")
+  @Column(name = "birth_date")
   private String birthdate;
 }
