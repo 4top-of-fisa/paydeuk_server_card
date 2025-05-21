@@ -1,14 +1,14 @@
 package tower_of_fisa.paydeuk_server_card.token.service;
 
-import static tower_of_fisa.paydeuk_server_card.common.ErrorDefineCode.*;
+import static tower_of_fisa.paydeuk_server_card.global.common.ErrorDefineCode.*;
 
 import java.util.UUID;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import tower_of_fisa.paydeuk_server_card.config.exception.custom.exception.BadRequestException400;
-import tower_of_fisa.paydeuk_server_card.config.exception.custom.exception.ForbiddenException403;
-import tower_of_fisa.paydeuk_server_card.config.exception.custom.exception.NoSuchElementFoundException404;
+import tower_of_fisa.paydeuk_server_card.global.config.exception.custom.exception.BadRequestException400;
+import tower_of_fisa.paydeuk_server_card.global.config.exception.custom.exception.ForbiddenException403;
+import tower_of_fisa.paydeuk_server_card.global.config.exception.custom.exception.NoSuchElementFoundException404;
 import tower_of_fisa.paydeuk_server_card.domain.entity.IssuedCard;
 import tower_of_fisa.paydeuk_server_card.issued_card.repository.IssuedCardRepository;
 import tower_of_fisa.paydeuk_server_card.token.dto.CardIssueRequest;
