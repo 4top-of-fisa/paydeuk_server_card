@@ -14,17 +14,18 @@ import tower_of_fisa.paydeuk_server_card.previous_month_spending.repository.Prev
 @Service
 public class PreviousMonthSpendingService {
 
-    private final PreviousMonthSpendingRepository previousMonthSpendingRepository;
+  private final PreviousMonthSpendingRepository previousMonthSpendingRepository;
 
-    /**
-     * [전월 실적 조회] 해당 카드의 전월 실적을 조회한다.
-     *
-     * @param previousMonthSpendingRequest PreviousMonthSpendingRequest - 전월 실적 조회 [요청 DTO]
-     * @return previousMonthSpendingResponse - 전월 실적 조회 [응답 DTO]
-     */
-    public PreviousMonthSpendingResponse getRecord(PreviousMonthSpendingRequest previousMonthSpendingRequest) {
-        return previousMonthSpendingRepository.findValueByCardToken(previousMonthSpendingRequest.getCardToken())
-                .orElseThrow(() -> new NoSuchElementFoundException404(ErrorDefineCode.CARD_NOT_FOUND));
-
-    }
+  /**
+   * [전월 실적 조회] 해당 카드의 전월 실적을 조회한다.
+   *
+   * @param previousMonthSpendingRequest PreviousMonthSpendingRequest - 전월 실적 조회 [요청 DTO]
+   * @return previousMonthSpendingResponse - 전월 실적 조회 [응답 DTO]
+   */
+  public PreviousMonthSpendingResponse getRecord(
+      PreviousMonthSpendingRequest previousMonthSpendingRequest) {
+    return previousMonthSpendingRepository
+        .findValueByCardToken(previousMonthSpendingRequest.getCardToken())
+        .orElseThrow(() -> new NoSuchElementFoundException404(ErrorDefineCode.CARD_NOT_FOUND));
+  }
 }

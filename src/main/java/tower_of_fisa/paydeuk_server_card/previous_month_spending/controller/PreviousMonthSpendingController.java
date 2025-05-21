@@ -20,24 +20,25 @@ import tower_of_fisa.paydeuk_server_card.previous_month_spending.service.Previou
 @RestController
 public class PreviousMonthSpendingController {
 
-    private final PreviousMonthSpendingService previousMonthSpendingService;
+  private final PreviousMonthSpendingService previousMonthSpendingService;
 
+  @PostMapping("/record")
+  @Operation(summary = "CARD_01 : 전월 실적 조회", description = "사용할려는 카드의 전월 실적을 조회합니다.")
+  @ApiResponses(
+      value = {
+        @ApiResponse(responseCode = "200", description = "전월 실적 조회 성공"),
+        @ApiResponse(
+            responseCode = "404",
+            description = "카드를 찾을 수 없음",
+            content =
+                @Content(examples = {@ExampleObject(value = SwaggerResponseExample.CARD_404)}))
+      })
+  public CommonResponse<PreviousMonthSpendingResponse> getRecord(
+      @RequestBody @Valid PreviousMonthSpendingRequest previousMonthSpendingRequest) {
 
-    @PostMapping("/record")
-    @Operation(summary = "CARD_01 : 전월 실적 조회", description = "사용할려는 카드의 전월 실적을 조회합니다.")
-    @ApiResponses(
-            value = {
-                    @ApiResponse(responseCode = "200", description = "전월 실적 조회 성공"),
-                    @ApiResponse(
-                            responseCode = "404",
-                            description = "카드를 찾을 수 없음",
-                            content =
-                            @Content(examples = {@ExampleObject(value = SwaggerResponseExample.CARD_404)}))
-            })
-    public CommonResponse<PreviousMonthSpendingResponse> getRecord(
-            @RequestBody @Valid PreviousMonthSpendingRequest previousMonthSpendingRequest) {
-
-        PreviousMonthSpendingResponse previousMonthSpendingResponse = previousMonthSpendingService.getRecord(previousMonthSpendingRequest);
-        return new CommonResponse<>(true, HttpStatus.OK, "전월 실적을 조회에 성공했습니다.", previousMonthSpendingResponse);
-    }
+    PreviousMonthSpendingResponse previousMonthSpendingResponse =
+        previousMonthSpendingService.getRecord(previousMonthSpendingRequest);
+    return new CommonResponse<>(
+        true, HttpStatus.OK, "전월 실적을 조회에 성공했습니다.", previousMonthSpendingResponse);
+  }
 }
