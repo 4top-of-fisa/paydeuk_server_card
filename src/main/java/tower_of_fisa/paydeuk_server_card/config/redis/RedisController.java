@@ -13,7 +13,7 @@ public class RedisController {
   @PostMapping("/set")
   public String setValue(@RequestParam String key, @RequestParam String value) {
     redisService.saveValue(key, value);
-    return "Saved [" + key + "] = " + value;
+    return "Save !";
   }
 
   // 조회
