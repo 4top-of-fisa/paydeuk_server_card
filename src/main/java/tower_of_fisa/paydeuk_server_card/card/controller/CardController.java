@@ -2,7 +2,7 @@ package tower_of_fisa.paydeuk_server_card.card.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
-import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import java.util.List;
@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import tower_of_fisa.paydeuk_server_card.card.dto.CardInfoResponse;
 import tower_of_fisa.paydeuk_server_card.card.service.CardService;
 import tower_of_fisa.paydeuk_server_card.common.response.CommonResponse;
+import tower_of_fisa.paydeuk_server_card.common.response.swagger_response.SwaggerResponseExample;
 import tower_of_fisa.paydeuk_server_card.domain.enums.CardCompany;
 
 @Tag(name = "카드사 API", description = "카드사 API")
@@ -29,10 +30,7 @@ public class CardController {
 
   @GetMapping("/info")
   @Operation(summary = "CARD_01 : 전체 카드 조회", description = "모든 카드 정보를 조회합니다.")
-  @ApiResponse(
-      responseCode = "200",
-      description = "카드 정보 조회 성공",
-      content = @Content(schema = @Schema(implementation = CardInfoResponse.class)))
+  @ApiResponse(responseCode = "200", description = "카드 정보 조회 성공")
   public CommonResponse<List<CardInfoResponse>> getAllCardInfo() {
     List<CardInfoResponse> cardInfoList = cardService.getAllCardInfo();
     return new CommonResponse<>(true, HttpStatus.OK, "카드 정보 조회 성공", cardInfoList);
@@ -40,10 +38,12 @@ public class CardController {
 
   @GetMapping("/info/{cardCompany}")
   @Operation(summary = "CARD_02 : 카드사별 카드 조회", description = "카드사별 카드 정보를 조회합니다.")
+  @ApiResponse(responseCode = "200", description = "카드사별 카드 정보 조회 성공")
   @ApiResponse(
-      responseCode = "200",
-      description = "카드사별 카드 정보 조회 성공",
-      content = @Content(schema = @Schema(implementation = CardInfoResponse.class)))
+      responseCode = "404",
+      description = "카드사 정보 없음",
+      content =
+          @Content(examples = {@ExampleObject(value = SwaggerResponseExample.CARD_COMPANY_404)}))
   public CommonResponse<List<CardInfoResponse>> getCardInfoByCardCompany(
       @PathVariable CardCompany cardCompany) {
     List<CardInfoResponse> cardInfoList = cardService.getCardInfoByCardCompany(cardCompany);
