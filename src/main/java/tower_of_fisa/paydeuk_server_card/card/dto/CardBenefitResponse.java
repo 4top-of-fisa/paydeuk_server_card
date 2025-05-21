@@ -17,7 +17,7 @@ public class CardBenefitResponse {
   @Schema(description = "혜택 내용", example = "국내외 가맹점 1.5% M포인트 적립")
   private final String benefitDescription;
 
-  @Schema(description = "혜택 방식", example = "적립")
+  @Schema(description = "혜택 방식", example = "POINT")
   private final BenefitType benefitType;
 
   @Schema(description = "적용 가맹점 목록")
