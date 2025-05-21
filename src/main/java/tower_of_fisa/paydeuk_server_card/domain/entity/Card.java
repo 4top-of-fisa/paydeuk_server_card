@@ -7,6 +7,9 @@ import tower_of_fisa.paydeuk_server_card.common.BaseEntity;
 import tower_of_fisa.paydeuk_server_card.domain.enums.CardCompany;
 import tower_of_fisa.paydeuk_server_card.domain.enums.CardType;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Getter
 @Entity
 @Table(name = "card")
@@ -34,4 +37,7 @@ public class Card extends BaseEntity {
   @Enumerated(EnumType.STRING)
   @Column(name = "company", nullable = false)
   private CardCompany cardCompany;
+
+  @OneToMany(mappedBy = "card", cascade = CascadeType.ALL, orphanRemoval = true)
+  private List<CardBenefit> cardBenefits = new ArrayList<>();
 }

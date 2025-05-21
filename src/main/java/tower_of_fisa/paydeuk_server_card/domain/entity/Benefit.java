@@ -6,6 +6,9 @@ import lombok.Getter;
 import tower_of_fisa.paydeuk_server_card.common.BaseEntity;
 import tower_of_fisa.paydeuk_server_card.domain.enums.BenefitType;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Getter
 @Entity
 @Table(name = "benefit")
@@ -33,4 +36,10 @@ public class Benefit extends BaseEntity {
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "merchant_id")
   private Merchant merchant;
+
+  @OneToMany(mappedBy = "benefit", cascade = CascadeType.ALL, orphanRemoval = true)
+  private List<BenefitCondition> benefitConditions = new ArrayList<>();
+
+  @OneToMany(mappedBy = "benefit", cascade = CascadeType.ALL, orphanRemoval = true)
+  private List<DiscountRate> discountRates = new ArrayList<>();
 }
