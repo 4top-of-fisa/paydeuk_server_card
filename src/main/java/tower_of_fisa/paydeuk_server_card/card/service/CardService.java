@@ -1,5 +1,6 @@
 package tower_of_fisa.paydeuk_server_card.card.service;
 
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -7,8 +8,6 @@ import tower_of_fisa.paydeuk_server_card.card.dto.CardInfoResponse;
 import tower_of_fisa.paydeuk_server_card.card.mapper.CardMapper;
 import tower_of_fisa.paydeuk_server_card.card.repository.CardRepository;
 import tower_of_fisa.paydeuk_server_card.domain.enums.CardCompany;
-
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor

@@ -5,6 +5,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -16,8 +17,6 @@ import tower_of_fisa.paydeuk_server_card.card.dto.CardInfoResponse;
 import tower_of_fisa.paydeuk_server_card.card.service.CardService;
 import tower_of_fisa.paydeuk_server_card.common.response.CommonResponse;
 import tower_of_fisa.paydeuk_server_card.domain.enums.CardCompany;
-
-import java.util.List;
 
 @Tag(name = "카드사 API", description = "카드사 API")
 @RestController
@@ -45,7 +44,8 @@ public class CardController {
       responseCode = "200",
       description = "카드사별 카드 정보 조회 성공",
       content = @Content(schema = @Schema(implementation = CardInfoResponse.class)))
-  public CommonResponse<List<CardInfoResponse>> getCardInfoByCardCompany(@PathVariable CardCompany cardCompany) {
+  public CommonResponse<List<CardInfoResponse>> getCardInfoByCardCompany(
+      @PathVariable CardCompany cardCompany) {
     List<CardInfoResponse> cardInfoList = cardService.getCardInfoByCardCompany(cardCompany);
     return new CommonResponse<>(true, HttpStatus.OK, "카드사별 카드 정보 조회 성공", cardInfoList);
   }
