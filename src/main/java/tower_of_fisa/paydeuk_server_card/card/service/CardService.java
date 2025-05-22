@@ -28,7 +28,7 @@ public class CardService {
   }
 
   public PaymentResponse paymentProcessing(PaymentRequest paymentRequest) {
-    //결제 프로스세를 진행합니다.
+    // 결제 프로스세를 진행합니다.
     paymentRequest.getAmount(); // 소나큐브 에러 방지를 위한 대체
     return new PaymentResponse("2025-05-22-T10:15:30");
   }
