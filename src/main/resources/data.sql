@@ -155,6 +155,12 @@ INSERT INTO benefit_usage_count (issued_card_id, condition_id, value, created_at
 VALUES (1, 1, 2, NOW(), NOW());
 -- 테스트 / 현대카드 M / 일일 사용 횟수
 
+INSERT INTO benefit_usage_count (issued_card_id, condition_id, value, created_at, updated_at)
+VALUES (3, 17, 2, NOW(), NOW()), -- 예: 일 2회 사용
+       (3, 19, 4000, NOW(), NOW());
+-- 예: 월 할인 4000원 사용
+
+
 -- PREVIOUS_MONTH_SPENDING TABLE (카드별 전월 실적)
 INSERT INTO previous_month_spending (issued_card_id, value, created_at, updated_at)
 VALUES (1, 120000, NOW(), NOW()); -- 현대카드 M of 테스트
