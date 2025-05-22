@@ -1,0 +1,12 @@
+services:
+  redis:
+    build: ./redis  # redis 디렉터리 안에 있는 Dockerfile을 사용해 이미지를 빌드
+    image: paydeuk-server-card-redis
+    container_name: paydeuk-server-card-redis-container
+    ports:
+      - "6380:6379"
+    volumes:
+      - redis-data-card:/data
+
+volumes:
+  redis-data-card:
