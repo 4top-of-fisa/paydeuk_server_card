@@ -13,7 +13,7 @@ public class CardIssueRequest {
   private final String userName;
 
   @Schema(description = "사용자 생년월일", example = "1999-09-01")
-  private final String userDob;
+  private final String userBirthDate;
 
   @Schema(description = "사용자 전화번호", example = "010-3164-6358")
   private final String userPhone;

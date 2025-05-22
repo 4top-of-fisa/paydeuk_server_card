@@ -50,7 +50,7 @@ public class IssuedCardTokenService {
 
   private boolean isSameUser(IssuedCard issuedCard, CardIssueRequest request) {
     return issuedCard.getUser().getName().equals(request.getUserName())
-        && issuedCard.getUser().getBirthdate().equals(request.getUserDob())
+        && issuedCard.getUser().getBirthdate().equals(request.getUserBirthDate())
         && issuedCard.getUser().getPhoneNumber().equals(request.getUserPhone());
   }
 
