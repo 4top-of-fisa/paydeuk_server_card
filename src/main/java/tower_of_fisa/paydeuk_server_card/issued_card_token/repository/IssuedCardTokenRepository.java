@@ -1,4 +1,4 @@
-package tower_of_fisa.paydeuk_server_card.issuedCardToken.repository;
+package tower_of_fisa.paydeuk_server_card.issued_card_token.repository;
 
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;

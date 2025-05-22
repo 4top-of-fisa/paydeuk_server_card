@@ -1,4 +1,4 @@
-package tower_of_fisa.paydeuk_server_card.benefitUsageCount.repository;
+package tower_of_fisa.paydeuk_server_card.benefit_usage_count.repository;
 
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
