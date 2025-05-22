@@ -1,11 +1,10 @@
 package tower_of_fisa.paydeuk_server_card.issuedCardToken.repository;
 
+import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import tower_of_fisa.paydeuk_server_card.domain.entity.IssuedCardToken;
-
-import java.util.Optional;
 
 public interface IssuedCardTokenRepository extends JpaRepository<IssuedCardToken, Long> {
   @Query(
