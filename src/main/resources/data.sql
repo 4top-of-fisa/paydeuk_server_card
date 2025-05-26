@@ -20,20 +20,25 @@ VALUES ('스타벅스', 'FOOD_BEVERAGE', NOW(), NOW()),  -- 1
 
 -- USERS TABLE (고객)
 INSERT INTO users (name, phone_number, birth_date, created_at, updated_at)
-VALUES ('테스트', '010-0000-0000', '2000-01-01', NOW(), NOW()), -- 만료
-       ('김성준', '010-7683-0198', '1998-10-22', NOW(), NOW()),
-       ('이원빈', '010-3339-9037', '2000-05-12', NOW(), NOW()),
-       ('임지섭', '010-3164-6358', '1999-09-01', NOW(), NOW()),
-       ('차승훈', '010-9190-5047', '1999-02-13', NOW(), NOW()),
-       ('황혜영', '010-9711-3531', '1999-10-04', NOW(), NOW());
+VALUES ('테스트', '010-0000-0000', '2000.01.01', NOW(), NOW()), -- 만료
+       ('김성준', '010-7683-0198', '1998.10.22', NOW(), NOW()),
+       ('이원빈', '010-3339-9037', '2000.05.12', NOW(), NOW()),
+       ('임지섭', '010-3164-6358', '1999.09.01', NOW(), NOW()),
+       ('차승훈', '010-9190-5047', '1999.02.13', NOW(), NOW()),
+       ('황혜영', '010-9711-3531', '1999.10.04', NOW(), NOW());
 
 -- CARD TABLE (카드)
 INSERT INTO card (name, type, image_url, annual_fee, company, created_at, updated_at)
-VALUES ('현대카드 M', 'CREDIT', 'dummyurl', 30000, 'HYUNDAI', NOW(), NOW()),
-       ('신한카드 Mr.Life', 'CREDIT', 'dummyurl', 15000, 'SHINHAN', NOW(), NOW()),
-       ('KB국민 다담카드', 'CREDIT', 'dummyurl', 15000, 'KOOKMIN', NOW(), NOW()),
-       ('삼성카드 taptap O', 'CREDIT', 'dummyurl', 10000, 'SAMSUNG', NOW(), NOW()),
-       ('DA카드의정석 II', 'CREDIT', 'dummyurl', 15000, 'WOORI', NOW(), NOW());
+VALUES ('현대카드 M', 'CREDIT', 'https://paydeuk-s3-bucket.s3.ap-northeast-2.amazonaws.com/hyundaiM.png', 30000, 'HYUNDAI',
+        NOW(), NOW()),
+       ('신한카드 Mr.Life', 'CREDIT', 'https://paydeuk-s3-bucket.s3.ap-northeast-2.amazonaws.com/shinhanMrLife.png', 15000,
+        'SHINHAN', NOW(), NOW()),
+       ('KB국민 다담카드', 'CREDIT', 'https://paydeuk-s3-bucket.s3.ap-northeast-2.amazonaws.com/kbDadam.png', 15000,
+        'KOOKMIN', NOW(), NOW()),
+       ('삼성카드 taptap O', 'CREDIT', 'https://paydeuk-s3-bucket.s3.ap-northeast-2.amazonaws.com/samsungTaptap.png', 10000,
+        'SAMSUNG', NOW(), NOW()),
+       ('DA카드의정석 II', 'CREDIT', 'https://paydeuk-s3-bucket.s3.ap-northeast-2.amazonaws.com/da2.png', 15000, 'WOORI',
+        NOW(), NOW());
 
 
 -- PAYDUEK_REGISTERED_CARD TABLE (페이득 등록 카드)
@@ -53,17 +58,17 @@ VALUES ('hyundai_m_test', NOW(), NOW()),
 -- ISSUED_CARD TABLE (발급 카드)
 INSERT INTO issued_card(user_id, card_id, card_number, cvc, expiration_year, expiration_month, card_password,
                         created_at, updated_at)
-VALUES (1, 1, '1111-2222-3333-4440', '123', '2024', '12', '00', NOW(), NOW()), -- 테스트 현대카드 M (유효기간 만료 테스트)
-       (2, 1, '1111-2222-3333-4441', '123', '2026', '12', '00', NOW(), NOW()), -- 성준
-       (2, 2, '1111-2222-3333-4442', '123', '2026', '12', '00', NOW(), NOW()), -- 성준
-       (3, 1, '1111-2222-3333-4443', '123', '2026', '12', '00', NOW(), NOW()), -- 원빈
-       (3, 2, '1111-2222-3333-4444', '123', '2026', '12', '00', NOW(), NOW()), -- 원빈
-       (4, 1, '1111-2222-3333-4445', '123', '2026', '12', '00', NOW(), NOW()), -- 지섭
-       (4, 2, '1111-2222-3333-4446', '123', '2026', '12', '00', NOW(), NOW()), -- 지섭
-       (5, 1, '1111-2222-3333-4447', '123', '2026', '12', '00', NOW(), NOW()), -- 승훈
-       (5, 2, '1111-2222-3333-4448', '123', '2026', '12', '00', NOW(), NOW()), -- 승훈
-       (6, 1, '1111-2222-3333-4449', '123', '2026', '12', '00', NOW(), NOW()), -- 혜영
-       (6, 2, '1111-2222-3333-4410', '123', '2026', '12', '00', NOW(), NOW());
+VALUES (1, 1, '1111222233334440', '123', '2024', '12', '00', NOW(), NOW()), -- 테스트 현대카드 M (유효기간 만료 테스트)
+       (2, 1, '1111222233334441', '123', '2026', '12', '00', NOW(), NOW()), -- 성준
+       (2, 2, '1111222233334442', '123', '2026', '12', '00', NOW(), NOW()), -- 성준
+       (3, 1, '1111222233334443', '123', '2026', '12', '00', NOW(), NOW()), -- 원빈
+       (3, 2, '1111222233334444', '123', '2026', '12', '00', NOW(), NOW()), -- 원빈
+       (4, 1, '1111222233334445', '123', '2026', '12', '00', NOW(), NOW()), -- 지섭
+       (4, 2, '1111222233334446', '123', '2026', '12', '00', NOW(), NOW()), -- 지섭
+       (5, 1, '1111222233334447', '123', '2026', '12', '00', NOW(), NOW()), -- 승훈
+       (5, 2, '1111222233334448', '123', '2026', '12', '00', NOW(), NOW()), -- 승훈
+       (6, 1, '1111222233334449', '123', '2026', '12', '00', NOW(), NOW()), -- 혜영
+       (6, 2, '1111222233334410', '123', '2026', '12', '00', NOW(), NOW());
 -- 혜영
 
 -- ISSUED_CARD_TOKEN TABLE (발급 카드 토큰)
