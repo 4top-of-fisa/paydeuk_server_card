@@ -2,6 +2,7 @@ package tower_of_fisa.paydeuk_server_card.token.service;
 
 import static tower_of_fisa.paydeuk_server_card.global.common.ErrorDefineCode.*;
 
+import java.security.MessageDigest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,8 +13,6 @@ import tower_of_fisa.paydeuk_server_card.global.config.exception.custom.exceptio
 import tower_of_fisa.paydeuk_server_card.issued_card.repository.IssuedCardRepository;
 import tower_of_fisa.paydeuk_server_card.token.dto.CardIssueRequest;
 import tower_of_fisa.paydeuk_server_card.token.dto.CardTokenResponse;
-
-import java.security.MessageDigest;
 
 @Service
 @RequiredArgsConstructor
