@@ -58,7 +58,7 @@ VALUES ('hyundai_m_test', NOW(), NOW()),
 -- ISSUED_CARD TABLE (발급 카드)
 INSERT INTO issued_card(user_id, card_id, card_number, cvc, expiration_year, expiration_month, card_password,
                         created_at, updated_at)
-VALUES (1, 1, '1111222233334440', '123', '2024', '12', '00', NOW(), NOW()), -- 테스트 현대카드 M (유효기간 만료 테스트)
+VALUES (1, 1, '1111222233334440', '123', '2026', '12', '00', NOW(), NOW()), -- 테스트 현대카드 M (유효기간 만료 테스트)
        (2, 1, '1111222233334441', '123', '2026', '12', '00', NOW(), NOW()), -- 성준
        (2, 2, '1111222233334442', '123', '2026', '12', '00', NOW(), NOW()), -- 성준
        (3, 1, '1111222233334443', '123', '2026', '12', '00', NOW(), NOW()), -- 원빈
