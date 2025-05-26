@@ -2,7 +2,6 @@ package tower_of_fisa.paydeuk_server_card.token.service;
 
 import static tower_of_fisa.paydeuk_server_card.global.common.ErrorDefineCode.*;
 
-import java.util.UUID;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,6 +12,8 @@ import tower_of_fisa.paydeuk_server_card.global.config.exception.custom.exceptio
 import tower_of_fisa.paydeuk_server_card.issued_card.repository.IssuedCardRepository;
 import tower_of_fisa.paydeuk_server_card.token.dto.CardIssueRequest;
 import tower_of_fisa.paydeuk_server_card.token.dto.CardTokenResponse;
+
+import java.security.MessageDigest;
 
 @Service
 @RequiredArgsConstructor
@@ -40,7 +41,7 @@ public class IssuedCardTokenService {
     }
 
     // 4. 카드 토큰 발급
-    String cardToken = generateCardToken();
+    String cardToken = generateCardToken(issuedCard);
 
     return CardTokenResponse.builder()
         .cardId(issuedCard.getCard().getId())
@@ -61,7 +62,27 @@ public class IssuedCardTokenService {
         && issuedCard.getCardPassword().startsWith(request.getPinPrefix());
   }
 
-  private String generateCardToken() {
-    return UUID.randomUUID().toString().replace("-", "");
+  private String generateCardToken(IssuedCard issuedCard) {
+    String rawToken =
+        issuedCard.getCardNumber()
+            + issuedCard.getExpirationMonth()
+            + issuedCard.getExpirationYear()
+            + issuedCard.getCvc()
+            + issuedCard.getCardPassword()
+            + issuedCard.getUser().getName();
+
+    try {
+      MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
+      byte[] hash = messageDigest.digest(rawToken.getBytes());
+      StringBuilder hexString = new StringBuilder();
+      for (byte b : hash) {
+        String hex = Integer.toHexString(0xff & b);
+        if (hex.length() == 1) hexString.append('0');
+        hexString.append(hex);
+      }
+      return hexString.toString();
+    } catch (Exception e) {
+      throw new BadRequestException400(UNCAUGHT);
+    }
   }
 }
