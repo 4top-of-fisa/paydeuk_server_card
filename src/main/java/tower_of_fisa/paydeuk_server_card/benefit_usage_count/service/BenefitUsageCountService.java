@@ -2,8 +2,8 @@
 
 package tower_of_fisa.paydeuk_server_card.benefit_usage_count.service;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
@@ -38,30 +38,42 @@ public class BenefitUsageCountService {
     List<BenefitCondition> conditions =
         benefitConditionRepository.findAllById(List.of(request.getConditionId()));
 
-    List<CardConditionResponse> responses = new ArrayList<>();
+    return conditions.stream()
+        .map(condition -> getConditionResponseIfExists(condition, issuedCardId))
+        .flatMap(Optional::stream)
+        .toList();
+  }
 
-    for (BenefitCondition condition : conditions) {
-      Long conditionId = condition.getId();
-      String redisPrefix =
-          isAmountBased(condition.getConditionCategory()) ? "BenefitSum" : "BenefitCount";
-      String redisKey = String.format("%s:%d:%d", redisPrefix, issuedCardId, conditionId);
+  private Optional<CardConditionResponse> getConditionResponseIfExists(
+      BenefitCondition condition, Long issuedCardId) {
+    String redisKey =
+        buildRedisKey(condition.getConditionCategory(), issuedCardId, condition.getId());
 
-      if (Boolean.FALSE.equals(redisTemplate.hasKey(redisKey))) {
-        continue;
-      }
-
-      String valueStr = redisTemplate.opsForValue().get(redisKey);
-
-      int value = Integer.parseInt(valueStr);
-      responses.add(new CardConditionResponse(conditionId, value));
+    if (Boolean.FALSE.equals(redisTemplate.hasKey(redisKey))) {
+      return Optional.empty();
     }
 
-    return responses;
+    String valueStr = redisTemplate.opsForValue().get(redisKey);
+    if (valueStr == null) {
+      return Optional.empty();
+    }
+
+    try {
+      int value = Integer.parseInt(valueStr);
+      return Optional.of(new CardConditionResponse(condition.getId(), value));
+    } catch (NumberFormatException e) {
+      return Optional.empty();
+    }
   }
 
-  // 카테고리가 금액 기반인지 여부 판단
-  private boolean isAmountBased(BenefitConditionCategory category) {
-    return category == BenefitConditionCategory.DAILY_DISCOUNT_LIMIT
-        || category == BenefitConditionCategory.MONTHLY_DISCOUNT_LIMIT;
+  private String buildRedisKey(
+      BenefitConditionCategory category, Long issuedCardId, Long conditionId) {
+    String prefix = amountBasedCategories.contains(category) ? "BenefitSum" : "BenefitCount";
+    return String.format("%s:%d:%d", prefix, issuedCardId, conditionId);
   }
+
+  private static final Set<BenefitConditionCategory> amountBasedCategories =
+      EnumSet.of(
+          BenefitConditionCategory.DAILY_DISCOUNT_LIMIT,
+          BenefitConditionCategory.MONTHLY_DISCOUNT_LIMIT);
 }
