@@ -4,13 +4,19 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import tower_of_fisa.paydeuk_server_card.domain.enums.CardCompany;
 import tower_of_fisa.paydeuk_server_card.domain.enums.CardType;
 import tower_of_fisa.paydeuk_server_card.global.common.BaseEntity;
 
 @Getter
 @Entity
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "card")
 public class Card extends BaseEntity {
   @Id
