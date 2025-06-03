@@ -2,13 +2,13 @@ package tower_of_fisa.paydeuk_server_card.benefit_usage_count.repository;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import jakarta.persistence.EntityManager;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.ActiveProfiles;
-import jakarta.persistence.EntityManager;
 import tower_of_fisa.paydeuk_server_card.domain.entity.*;
 import tower_of_fisa.paydeuk_server_card.domain.enums.*;
 
