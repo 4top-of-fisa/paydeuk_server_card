@@ -1,12 +1,18 @@
 package tower_of_fisa.paydeuk_server_card.domain.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import tower_of_fisa.paydeuk_server_card.domain.enums.BenefitConditionCategory;
 import tower_of_fisa.paydeuk_server_card.global.common.BaseEntity;
 
 @Getter
 @Entity
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "benefit_condition")
 public class BenefitCondition extends BaseEntity {
   @Id
@@ -14,7 +20,7 @@ public class BenefitCondition extends BaseEntity {
   @Column(name = "id", nullable = false)
   private Long id;
 
-  @Column(name = "value")
+  @Column(name = "`value`")
   private Long value;
 
   @Enumerated(EnumType.STRING)
@@ -27,5 +33,5 @@ public class BenefitCondition extends BaseEntity {
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "spending_range_id", nullable = true)
-  private SpendingRange spendingRange;
+  private transient SpendingRange spendingRange;
 }

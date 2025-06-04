@@ -1,12 +1,18 @@
 package tower_of_fisa.paydeuk_server_card.domain.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import tower_of_fisa.paydeuk_server_card.domain.enums.PaymentService;
 import tower_of_fisa.paydeuk_server_card.global.common.BaseEntity;
 
 @Getter
 @Entity
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "issued_card_token")
 public class IssuedCardToken extends BaseEntity {
   @Id
