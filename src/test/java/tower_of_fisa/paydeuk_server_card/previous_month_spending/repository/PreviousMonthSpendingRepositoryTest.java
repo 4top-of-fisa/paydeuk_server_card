@@ -17,12 +17,12 @@ import tower_of_fisa.paydeuk_server_card.domain.entity.IssuedCard;
 import tower_of_fisa.paydeuk_server_card.domain.entity.IssuedCardToken;
 import tower_of_fisa.paydeuk_server_card.domain.entity.PaydeukRegisteredCard;
 import tower_of_fisa.paydeuk_server_card.domain.entity.PreviousMonthSpending;
-import tower_of_fisa.paydeuk_server_card.previous_month_spending.dto.PreviousMonthSpendingResponse;
 import tower_of_fisa.paydeuk_server_card.domain.entity.Users;
 import tower_of_fisa.paydeuk_server_card.domain.enums.CardCompany;
 import tower_of_fisa.paydeuk_server_card.domain.enums.CardType;
 import tower_of_fisa.paydeuk_server_card.domain.enums.PaymentService;
 import tower_of_fisa.paydeuk_server_card.issued_card.repository.IssuedCardRepository;
+import tower_of_fisa.paydeuk_server_card.previous_month_spending.dto.PreviousMonthSpendingResponse;
 
 @DataJpaTest
 @ActiveProfiles("test")
