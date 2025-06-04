@@ -1,3 +1,17 @@
+DROP TABLE IF EXISTS previous_month_spending;
+DROP TABLE IF EXISTS benefit_usage_count;
+DROP TABLE IF EXISTS card_benefit;
+DROP TABLE IF EXISTS discount_rate;
+DROP TABLE IF EXISTS benefit_condition;
+DROP TABLE IF EXISTS spending_range;
+DROP TABLE IF EXISTS issued_card_token;
+DROP TABLE IF EXISTS issued_card;
+DROP TABLE IF EXISTS paydeuk_registered_card;
+DROP TABLE IF EXISTS card;
+DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS benefit;
+DROP TABLE IF EXISTS merchant;
+
 -- TABLES
 CREATE TABLE merchant
 (
