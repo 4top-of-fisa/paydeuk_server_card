@@ -6,17 +6,16 @@ import static org.mockito.BDDMockito.given;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 import tower_of_fisa.paydeuk_server_card.card.dto.CardInfoResponse;
 import tower_of_fisa.paydeuk_server_card.card.mapper.CardMapper;
 import tower_of_fisa.paydeuk_server_card.card.repository.CardRepository;
 import tower_of_fisa.paydeuk_server_card.domain.entity.Card;
 import tower_of_fisa.paydeuk_server_card.domain.enums.CardCompany;
 import tower_of_fisa.paydeuk_server_card.domain.enums.CardType;
-
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
 class CardServiceTest {
