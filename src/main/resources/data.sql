@@ -20,7 +20,7 @@ VALUES ('스타벅스', 'FOOD_BEVERAGE', NOW(), NOW()),  -- 1
 
 -- USERS TABLE (고객)
 INSERT INTO users (name, phone_number, birth_date, created_at, updated_at)
-VALUES ('테스트', '010-0000-0000', '2000.01.01', NOW(), NOW()), -- 만료
+VALUES ('일반유저', '010-1234-5678', '1990.01.01', NOW(), NOW()), -- 만료
        ('김성준', '010-7683-0198', '1998.10.22', NOW(), NOW()),
        ('이원빈', '010-3339-9037', '2000.05.12', NOW(), NOW()),
        ('임지섭', '010-3164-6358', '1999.09.01', NOW(), NOW()),
