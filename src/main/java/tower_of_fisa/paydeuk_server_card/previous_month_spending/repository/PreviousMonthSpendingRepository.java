@@ -3,6 +3,7 @@ package tower_of_fisa.paydeuk_server_card.previous_month_spending.repository;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import tower_of_fisa.paydeuk_server_card.domain.entity.PreviousMonthSpending;
 import tower_of_fisa.paydeuk_server_card.previous_month_spending.dto.PreviousMonthSpendingResponse;
 
@@ -17,7 +18,7 @@ public interface PreviousMonthSpendingRepository
           JOIN ict.paydeukRegisteredCard prc
           WHERE prc.cardToken = :cardToken
       """)
-  Optional<PreviousMonthSpendingResponse> findValueByCardToken(String cardToken);
+  Optional<PreviousMonthSpendingResponse> findValueByCardToken(@Param("cardToken") String cardToken);
 }
 /*
  paydeuk_registerd_card에서 카드 토큰으로 id 찾고
