@@ -151,7 +151,7 @@ CREATE TABLE previous_month_spending
 (
     id             BIGINT AUTO_INCREMENT PRIMARY KEY NOT NULL,
     issued_card_id BIGINT                            NOT NULL,
-    spending_value INT                               NOT NULL,
+    `value`        INT                               NOT NULL,
     created_at     TIMESTAMP,
     updated_at     TIMESTAMP,
     FOREIGN KEY (issued_card_id) REFERENCES issued_card (id)
