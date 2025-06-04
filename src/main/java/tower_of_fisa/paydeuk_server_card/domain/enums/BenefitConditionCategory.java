@@ -29,7 +29,7 @@ public enum BenefitConditionCategory {
 
   public enum LimitType {
     LIMIT,
-    COUNT;
+    COUNT
   }
 
   public enum DateCategory {
