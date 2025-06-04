@@ -18,7 +18,8 @@ public interface PreviousMonthSpendingRepository
           JOIN ict.paydeukRegisteredCard prc
           WHERE prc.cardToken = :cardToken
       """)
-  Optional<PreviousMonthSpendingResponse> findValueByCardToken(@Param("cardToken") String cardToken);
+  Optional<PreviousMonthSpendingResponse> findValueByCardToken(
+      @Param("cardToken") String cardToken);
 }
 /*
  paydeuk_registerd_card에서 카드 토큰으로 id 찾고
