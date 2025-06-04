@@ -9,8 +9,6 @@ import lombok.NoArgsConstructor;
 @Getter
 public class CardConditionResponse {
 
-    private Long conditionId;
-    private int value;
-
-
+  private Long conditionId;
+  private int value;
 }
