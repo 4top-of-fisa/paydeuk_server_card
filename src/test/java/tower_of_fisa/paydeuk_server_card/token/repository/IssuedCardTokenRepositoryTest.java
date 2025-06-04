@@ -2,12 +2,14 @@ package tower_of_fisa.paydeuk_server_card.token.repository;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.Optional;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.ActiveProfiles;
+import tower_of_fisa.paydeuk_server_card.card.repository.CardRepository;
 import tower_of_fisa.paydeuk_server_card.domain.entity.Card;
 import tower_of_fisa.paydeuk_server_card.domain.entity.IssuedCard;
 import tower_of_fisa.paydeuk_server_card.domain.entity.IssuedCardToken;
@@ -17,10 +19,7 @@ import tower_of_fisa.paydeuk_server_card.domain.enums.CardCompany;
 import tower_of_fisa.paydeuk_server_card.domain.enums.CardType;
 import tower_of_fisa.paydeuk_server_card.domain.enums.PaymentService;
 import tower_of_fisa.paydeuk_server_card.issued_card.repository.IssuedCardRepository;
-import tower_of_fisa.paydeuk_server_card.card.repository.CardRepository;
 import tower_of_fisa.paydeuk_server_card.issued_card_token.repository.IssuedCardTokenRepository;
-
-import java.util.Optional;
 
 @DataJpaTest
 @ActiveProfiles("test")
