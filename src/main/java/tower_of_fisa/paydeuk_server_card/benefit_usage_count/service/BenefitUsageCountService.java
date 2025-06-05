@@ -24,11 +24,9 @@ import tower_of_fisa.paydeuk_server_card.issued_card_token.repository.IssuedCard
 @RequiredArgsConstructor
 public class BenefitUsageCountService {
   private final IssuedCardTokenRepository issuedCardTokenRepository;
-  private final RedisTemplate<String, String> redisTemplate;
   private final BenefitConditionRepository benefitConditionRepository;
   private final BenefitRepository benefitRepository;
   private final RedisService redisService;
-  private final CardService cardService;
 
   /**
    * [카드 조건 조회] 사용자가 해당 카드로 이용한 혜택의 누적 사용 횟수와 할인 금액을 조회합니다.
