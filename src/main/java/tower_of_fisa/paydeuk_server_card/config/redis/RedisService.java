@@ -1,11 +1,10 @@
 package tower_of_fisa.paydeuk_server_card.config.redis;
 
+import java.util.Calendar;
+import java.util.concurrent.TimeUnit;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
-
-import java.util.Calendar;
-import java.util.concurrent.TimeUnit;
 
 @Service
 @RequiredArgsConstructor

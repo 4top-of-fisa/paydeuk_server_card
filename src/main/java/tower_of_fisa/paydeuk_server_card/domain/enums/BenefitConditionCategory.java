@@ -1,9 +1,8 @@
 package tower_of_fisa.paydeuk_server_card.domain.enums;
 
-import lombok.Getter;
-
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import lombok.Getter;
 
 @Getter
 public enum BenefitConditionCategory {
