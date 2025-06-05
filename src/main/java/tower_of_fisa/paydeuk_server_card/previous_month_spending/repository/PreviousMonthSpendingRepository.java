@@ -20,6 +20,9 @@ public interface PreviousMonthSpendingRepository
       """)
   Optional<PreviousMonthSpendingResponse> findValueByCardToken(
       @Param("cardToken") String cardToken);
+
+  @Query("SELECT pms.value FROM PreviousMonthSpending pms WHERE pms.issuedCard.id = :issuedCardId")
+  Optional<Integer> findValueByIssuedCardId(long issuedCardId);
 }
 /*
  paydeuk_registerd_card에서 카드 토큰으로 id 찾고

@@ -4,25 +4,27 @@ package tower_of_fisa.paydeuk_server_card.benefit_usage_count.service;
 
 import java.util.*;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.redis.core.RedisTemplate;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import tower_of_fisa.paydeuk_server_card.benefit.repository.BenefitRepository;
 import tower_of_fisa.paydeuk_server_card.benefit_condition.repository.BenefitConditionRepository;
 import tower_of_fisa.paydeuk_server_card.benefit_usage_count.dto.CardConditionRequest;
 import tower_of_fisa.paydeuk_server_card.benefit_usage_count.dto.CardConditionResponse;
+import tower_of_fisa.paydeuk_server_card.config.redis.RedisService;
 import tower_of_fisa.paydeuk_server_card.domain.entity.BenefitCondition;
 import tower_of_fisa.paydeuk_server_card.domain.enums.BenefitConditionCategory;
 import tower_of_fisa.paydeuk_server_card.global.common.ErrorDefineCode;
 import tower_of_fisa.paydeuk_server_card.global.config.exception.custom.exception.NoSuchElementFoundException404;
 import tower_of_fisa.paydeuk_server_card.issued_card_token.repository.IssuedCardTokenRepository;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class BenefitUsageCountService {
   private final IssuedCardTokenRepository issuedCardTokenRepository;
-  private final RedisTemplate<String, String> redisTemplate;
   private final BenefitConditionRepository benefitConditionRepository;
   private final BenefitRepository benefitRepository;
+  private final RedisService redisService;
 
   /**
    * [카드 조건 조회] 사용자가 해당 카드로 이용한 혜택의 누적 사용 횟수와 할인 금액을 조회합니다.
@@ -49,19 +51,23 @@ public class BenefitUsageCountService {
       BenefitCondition condition, Long issuedCardId) {
     String redisKey =
         buildRedisKey(condition.getConditionCategory(), issuedCardId, condition.getId());
+    log.info("카드 조건 사용 조회 redisKey: {}", redisKey);
 
-    if (Boolean.FALSE.equals(redisTemplate.hasKey(redisKey))) {
+    if (!redisService.hasKey(redisKey)) {
       return Optional.empty();
     }
 
-    String valueStr = redisTemplate.opsForValue().get(redisKey);
+    String valueStr = redisService.getValue(redisKey);
+    log.info("vlueStr: {}", valueStr);
     if (valueStr == null) {
       return Optional.empty();
     }
 
     try {
-      int value = Integer.parseInt(valueStr);
-      return Optional.of(new CardConditionResponse(condition.getId(), value));
+      double value = Double.parseDouble(valueStr);
+      int intValue = (int) value;
+      log.info("Integer value: {}", intValue);
+      return Optional.of(new CardConditionResponse(condition.getId(), intValue));
     } catch (NumberFormatException e) {
       return Optional.empty();
     }

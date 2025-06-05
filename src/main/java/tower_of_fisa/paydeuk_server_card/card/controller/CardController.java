@@ -52,16 +52,9 @@ public class CardController {
   @PostMapping("/payment")
   @Operation(summary = "CARD_03 : 카드 결제", description = "결제 요청을 처리합니다.")
   @ApiResponse(responseCode = "200", description = "결제 요청을 처리 성공")
-  //  @ApiResponse(
-  //          responseCode = "404",
-  //          description = "카드사 정보 없음",
-  //          content =
-  //          @Content(examples = {@ExampleObject(value =
-  // SwaggerResponseExample.CARD_COMPANY_404)}))
-  // 결제 프로세스에 따른 에러처리
   public CommonResponse<PaymentResponse> receivePayment(
       @RequestBody PaymentRequest paymentRequest) {
     PaymentResponse paymentResponse = cardService.paymentProcessing(paymentRequest);
-    return new CommonResponse<>(true, HttpStatus.OK, "카드사별 카드 정보 조회 성공", paymentResponse);
+    return new CommonResponse<>(true, HttpStatus.OK, "카드 결제 성공", paymentResponse);
   }
 }

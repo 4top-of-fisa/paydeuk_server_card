@@ -239,4 +239,5 @@ INSERT INTO previous_month_spending (issued_card_id, value, created_at, updated_
 VALUES (1, 120000, NOW(), NOW()),  -- 현대카드 M of 테스트
        (12, 500000, NOW(), NOW()), -- mock_token (spending_range_id = 7)
        (13, 700000, NOW(), NOW()), -- mock_token2 (spending_range_id = 8)
-       (14, 500000, NOW(), NOW()); -- mock_token3 (spending_range_id = 7)
+       (14, 500000, NOW(), NOW()), -- mock_token3 (spending_range_id = 7)
+       (2, 1000000, NOW(), NOW()); -- mock_token3 (spending_range_id = 7)
