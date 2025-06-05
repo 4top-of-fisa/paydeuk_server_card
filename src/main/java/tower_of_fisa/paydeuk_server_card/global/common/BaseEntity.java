@@ -1,8 +1,6 @@
 package tower_of_fisa.paydeuk_server_card.global.common;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.EntityListeners;
-import jakarta.persistence.MappedSuperclass;
+import jakarta.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import lombok.Getter;
@@ -20,4 +18,16 @@ public abstract class BaseEntity implements Serializable {
   private LocalDateTime createdAt; // 생성일
 
   @LastModifiedDate private LocalDateTime updatedAt; // 수정일
+
+  @PrePersist
+  public void prePersist() {
+    LocalDateTime now = LocalDateTime.now();
+    this.createdAt = now;
+    this.updatedAt = now;
+  }
+
+  @PreUpdate
+  public void preUpdate() {
+    this.updatedAt = LocalDateTime.now();
+  }
 }

@@ -7,7 +7,7 @@ plugins {
 
 sonar {
 	properties {
-		property "sonar.projectKey", "tower-of-fisa_paydeuk_server_card"
+		property "sonar.projectKey", "4top-of-fisa_paydeuk_server_card"
 		property "sonar.organization", "tower-of-fisa"
 		property "sonar.host.url", "https://sonarcloud.io"
 	}

@@ -44,7 +44,7 @@ public class CardController {
       content =
           @Content(examples = {@ExampleObject(value = SwaggerResponseExample.CARD_COMPANY_404)}))
   public CommonResponse<List<CardInfoResponse>> getCardInfoByCardCompany(
-      @PathVariable CardCompany cardCompany) {
+      @PathVariable(name = "cardCompany") CardCompany cardCompany) {
     List<CardInfoResponse> cardInfoList = cardService.getCardInfoByCardCompany(cardCompany);
     return new CommonResponse<>(true, HttpStatus.OK, "카드사별 카드 정보 조회 성공", cardInfoList);
   }
