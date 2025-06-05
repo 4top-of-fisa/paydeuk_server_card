@@ -1,8 +1,11 @@
 package tower_of_fisa.paydeuk_server_card.domain.enums;
 
+import lombok.Getter;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+@Getter
 public enum BenefitConditionCategory {
   PER_TRANSACTION_LIMIT(LimitType.LIMIT, DateCategory.DAILY),
   DAILY_LIMIT_COUNT(LimitType.COUNT, DateCategory.DAILY),
