@@ -13,10 +13,6 @@ public class RedisService {
 
   private final RedisTemplate<String, String> redisTemplate;
 
-  public void setValue(String key, String value) {
-    redisTemplate.opsForValue().set(key, value);
-  }
-
   // 키-값 저장 (TTL을 지정할 수 있는 메서드 추가)
   public void saveValue(String key, String value, long ttl, TimeUnit unit) {
     redisTemplate.opsForValue().set(key, value, ttl, unit);

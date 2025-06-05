@@ -4,6 +4,7 @@ package tower_of_fisa.paydeuk_server_card.benefit_usage_count.service;
 
 import java.util.*;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import tower_of_fisa.paydeuk_server_card.benefit.repository.BenefitRepository;
@@ -16,6 +17,7 @@ import tower_of_fisa.paydeuk_server_card.global.common.ErrorDefineCode;
 import tower_of_fisa.paydeuk_server_card.global.config.exception.custom.exception.NoSuchElementFoundException404;
 import tower_of_fisa.paydeuk_server_card.issued_card_token.repository.IssuedCardTokenRepository;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class BenefitUsageCountService {
@@ -49,19 +51,23 @@ public class BenefitUsageCountService {
       BenefitCondition condition, Long issuedCardId) {
     String redisKey =
         buildRedisKey(condition.getConditionCategory(), issuedCardId, condition.getId());
+    log.info("카드 조건 사용 조회 redisKey: {}", redisKey);
 
     if (Boolean.FALSE.equals(redisTemplate.hasKey(redisKey))) {
       return Optional.empty();
     }
 
     String valueStr = redisTemplate.opsForValue().get(redisKey);
+    log.info("vlueStr: {}", valueStr);
     if (valueStr == null) {
       return Optional.empty();
     }
 
     try {
-      int value = Integer.parseInt(valueStr);
-      return Optional.of(new CardConditionResponse(condition.getId(), value));
+      double value = Double.parseDouble(valueStr);
+      int intValue = (int) value;
+      log.info("Integer value: {}", intValue);
+      return Optional.of(new CardConditionResponse(condition.getId(), intValue));
     } catch (NumberFormatException e) {
       return Optional.empty();
     }
