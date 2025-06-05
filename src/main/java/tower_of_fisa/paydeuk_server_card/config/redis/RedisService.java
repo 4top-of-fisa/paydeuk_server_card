@@ -32,6 +32,10 @@ public class RedisService {
     redisTemplate.opsForValue().increment(key, amount);
   }
 
+  public boolean hasKey(String redisKey) {
+    return Boolean.TRUE.equals(redisTemplate.hasKey(redisKey));
+  }
+
   // TTL을 계산하여 저장하는 메서드
   public long getRemainingSecondsUntilMidnight() {
     Calendar now = Calendar.getInstance();
