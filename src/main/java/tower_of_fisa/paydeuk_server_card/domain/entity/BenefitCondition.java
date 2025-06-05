@@ -33,5 +33,5 @@ public class BenefitCondition extends BaseEntity {
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "spending_range_id", nullable = true)
-  private transient SpendingRange spendingRange;
+  private SpendingRange spendingRange;
 }
