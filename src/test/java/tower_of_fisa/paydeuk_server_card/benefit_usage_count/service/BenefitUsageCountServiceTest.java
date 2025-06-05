@@ -11,11 +11,13 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.ValueOperations;
+import tower_of_fisa.paydeuk_server_card.benefit.repository.BenefitRepository;
+import tower_of_fisa.paydeuk_server_card.benefit_condition.repository.BenefitConditionRepository;
 import tower_of_fisa.paydeuk_server_card.benefit_usage_count.dto.CardConditionRequest;
 import tower_of_fisa.paydeuk_server_card.benefit_usage_count.dto.CardConditionResponse;
-import tower_of_fisa.paydeuk_server_card.benefit_usage_count.repository.BenefitUsageCountRepository;
 import tower_of_fisa.paydeuk_server_card.domain.entity.BenefitCondition;
-import tower_of_fisa.paydeuk_server_card.domain.entity.BenefitUsageCount;
 import tower_of_fisa.paydeuk_server_card.domain.enums.BenefitConditionCategory;
 import tower_of_fisa.paydeuk_server_card.global.config.exception.custom.exception.NoSuchElementFoundException404;
 import tower_of_fisa.paydeuk_server_card.issued_card_token.repository.IssuedCardTokenRepository;
@@ -25,9 +27,15 @@ class BenefitUsageCountServiceTest {
 
   @InjectMocks private BenefitUsageCountService benefitUsageCountService;
 
-  @Mock private BenefitUsageCountRepository benefitUsageCountRepository;
-
   @Mock private IssuedCardTokenRepository issuedCardTokenRepository;
+
+  @Mock private RedisTemplate<String, String> redisTemplate;
+
+  @Mock private ValueOperations<String, String> valueOperations;
+
+  @Mock private BenefitConditionRepository benefitConditionRepository;
+
+  @Mock private BenefitRepository benefitRepository;
 
   @Test
   @DisplayName("카드 토큰과 조건 ID로 혜택 사용 횟수 조회 성공")
@@ -44,15 +52,15 @@ class BenefitUsageCountServiceTest {
             .value(10000L)
             .build();
 
-    BenefitUsageCount usageCount =
-        BenefitUsageCount.builder().condition(condition).value(3).build();
-
     given(issuedCardTokenRepository.findIssuedCardIdByCardToken(cardToken))
         .willReturn(Optional.of(issuedCardId));
-    given(
-            benefitUsageCountRepository.findByIssuedCardIdAndConditionIdIn(
-                issuedCardId, List.of(conditionId)))
-        .willReturn(List.of(usageCount));
+    given(benefitConditionRepository.findAllById(List.of(conditionId)))
+        .willReturn(List.of(condition));
+    given(benefitRepository.findBenefitTitleByBenefitconditionId(conditionId))
+        .willReturn("benefit");
+    given(redisTemplate.hasKey(anyString())).willReturn(true);
+    given(redisTemplate.opsForValue()).willReturn(valueOperations);
+    given(valueOperations.get(anyString())).willReturn("3");
 
     // 카드 조건 요청 생성
     CardConditionRequest request =
