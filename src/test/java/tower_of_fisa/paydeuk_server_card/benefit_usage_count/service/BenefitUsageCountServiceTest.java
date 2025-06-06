@@ -63,8 +63,8 @@ class BenefitUsageCountServiceTest {
         .willReturn("benefit");
     given(redisService.hasKey(anyString())).willReturn(true);
     given(redisService.getValue(anyString())).willReturn("3");
-//    given(redisTemplate.opsForValue()).willReturn(valueOperations);
-//    given(valueOperations.get(anyString())).willReturn("3");
+    //    given(redisTemplate.opsForValue()).willReturn(valueOperations);
+    //    given(valueOperations.get(anyString())).willReturn("3");
 
     // 카드 조건 요청 생성
     CardConditionRequest request =
