@@ -69,7 +69,7 @@ public class CardService {
     if (benefit == null) {
       log.info(
           "카드 {}는 가맹점 {}에서 받을 수 있는 혜택이 없습니다. 결제 진행.", issuedCardId, paymentRequest.getMerchantId());
-      return new PaymentResponse(formattedTime);
+      return new PaymentResponse(formattedTime, null, 0D);
     }
 
     // 전월 실적에 맞는 할인율을 찾기
@@ -82,23 +82,23 @@ public class CardService {
     if (discountRate == null) {
       log.info(
           "카드 {}에서 전월 실적이 {}이지만, 적용 가능한 할인율이 없습니다. 결제 진행.", issuedCardId, previousMonthSpending);
-      return new PaymentResponse(formattedTime);
-    }
-
-    // 혜택 추가 조건 처리
-    if (Boolean.FALSE.equals(benefit.getHasAdditionalConditions())) {
-      log.info("혜택 {}에 추가 조건이 없습니다. 결제 진행.", benefit.getBenefitTitle());
-      return new PaymentResponse(formattedTime);
+      return new PaymentResponse(formattedTime, null, 0D);
     }
 
     // 할인 금액 계산
     double discountAmount = calculateDiscountAmount(paymentRequest.getAmount(), discountRate);
 
+    // 혜택 추가 조건 처리
+    if (Boolean.FALSE.equals(benefit.getHasAdditionalConditions())) {
+      log.info("혜택 {}에 추가 조건이 없습니다. 결제 진행.", benefit.getBenefitTitle());
+      return new PaymentResponse(formattedTime, benefit.getId(), discountAmount);
+    }
+
     // 혜택 조건에 맞게 Redis에 값 저장
     saveBenefitConditionsToRedis(benefit, issuedCardId, previousMonthSpending, discountAmount);
 
     // 결제 완료 응답 반환
-    return new PaymentResponse(formattedTime);
+    return new PaymentResponse(formattedTime, benefit.getId(), discountAmount);
   }
 
   private void saveBenefitConditionsToRedis(
