@@ -1,12 +1,34 @@
+version: '3.8'
+
 services:
   redis:
-    build: ./redis  # redis 디렉터리 안에 있는 Dockerfile을 사용해 이미지를 빌드
+    build: ./redis
     image: paydeuk-server-card-redis
     container_name: paydeuk-server-card-redis-container
     ports:
-      - "6380:6379"
+      - "6379:6379"
     volumes:
       - redis-data-card:/data
 
+  springboot:
+    build:
+      context: .
+      dockerfile: Dockerfile  # 현재 디렉터리에 있는 Dockerfile 사용
+    image: paydeuk-server-card-app
+    container_name: paydeuk-server-card-app-container
+    ports:
+      - "8080:8080"
+    depends_on:
+      - redis
+    environment:
+      SPRING_PROFILES_ACTIVE: local
+      REDIS_HOST: redis  # springboot에서 redis 접근 시 이 이름 사용
+    networks:
+      - app-network
+
 volumes:
   redis-data-card:
+
+networks:
+  app-network:
+    driver: bridge
