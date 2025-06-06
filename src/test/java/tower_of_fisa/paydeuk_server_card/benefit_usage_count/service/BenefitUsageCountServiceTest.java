@@ -17,6 +17,7 @@ import tower_of_fisa.paydeuk_server_card.benefit.repository.BenefitRepository;
 import tower_of_fisa.paydeuk_server_card.benefit_condition.repository.BenefitConditionRepository;
 import tower_of_fisa.paydeuk_server_card.benefit_usage_count.dto.CardConditionRequest;
 import tower_of_fisa.paydeuk_server_card.benefit_usage_count.dto.CardConditionResponse;
+import tower_of_fisa.paydeuk_server_card.config.redis.RedisService;
 import tower_of_fisa.paydeuk_server_card.domain.entity.BenefitCondition;
 import tower_of_fisa.paydeuk_server_card.domain.enums.BenefitConditionCategory;
 import tower_of_fisa.paydeuk_server_card.global.config.exception.custom.exception.NoSuchElementFoundException404;
@@ -36,6 +37,8 @@ class BenefitUsageCountServiceTest {
   @Mock private BenefitConditionRepository benefitConditionRepository;
 
   @Mock private BenefitRepository benefitRepository;
+
+  @Mock private RedisService redisService;
 
   @Test
   @DisplayName("카드 토큰과 조건 ID로 혜택 사용 횟수 조회 성공")
@@ -58,9 +61,10 @@ class BenefitUsageCountServiceTest {
         .willReturn(List.of(condition));
     given(benefitRepository.findBenefitTitleByBenefitconditionId(conditionId))
         .willReturn("benefit");
-    given(redisTemplate.hasKey(anyString())).willReturn(true);
-    given(redisTemplate.opsForValue()).willReturn(valueOperations);
-    given(valueOperations.get(anyString())).willReturn("3");
+    given(redisService.hasKey(anyString())).willReturn(true);
+    given(redisService.getValue(anyString())).willReturn("3");
+//    given(redisTemplate.opsForValue()).willReturn(valueOperations);
+//    given(valueOperations.get(anyString())).willReturn("3");
 
     // 카드 조건 요청 생성
     CardConditionRequest request =
