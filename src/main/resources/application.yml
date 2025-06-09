@@ -47,3 +47,6 @@ error:
   printStackTrace: true # Stack trace 출력 여부
   printStackTraceLine: 10 # Stack trace 출력 줄 수
 
+logging:
+  file:
+    name:  # 비워서 spring.log 비활성화
