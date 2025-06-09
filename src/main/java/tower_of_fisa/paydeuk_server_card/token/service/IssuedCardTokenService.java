@@ -24,17 +24,25 @@ public class IssuedCardTokenService {
   private final IssuedCardRepository issuedCardRepository;
 
   public CardTokenResponse issueCardToken(CardIssueRequest request) {
-    log.info("[카드 토큰 발급 요청] 사용자 이름: {}, 카드 번호: {}", request.getUserName(), maskCardNumber(request.getCardNumber()));
+    log.info(
+        "[카드 토큰 발급 요청] 사용자 이름: {}, 카드 번호: {}",
+        request.getUserName(),
+        maskCardNumber(request.getCardNumber()));
 
-    IssuedCard issuedCard = issuedCardRepository
+    IssuedCard issuedCard =
+        issuedCardRepository
             .findByCardNumber(request.getCardNumber())
-            .orElseThrow(() -> {
-              log.warn("[카드 없음] cardNumber: {}", maskCardNumber(request.getCardNumber()));
-              return new NoSuchElementFoundException404(CARD_NOT_FOUND);
-            });
+            .orElseThrow(
+                () -> {
+                  log.warn("[카드 없음] cardNumber: {}", maskCardNumber(request.getCardNumber()));
+                  return new NoSuchElementFoundException404(CARD_NOT_FOUND);
+                });
 
     if (!isSameUser(issuedCard, request)) {
-      log.warn("[사용자 정보 불일치] 요청자: {}, 카드 소유자: {}", request.getUserName(), issuedCard.getUser().getName());
+      log.warn(
+          "[사용자 정보 불일치] 요청자: {}, 카드 소유자: {}",
+          request.getUserName(),
+          issuedCard.getUser().getName());
       throw new ForbiddenException403(CARD_OWNER_MISMATCH);
     }
 
@@ -44,35 +52,36 @@ public class IssuedCardTokenService {
     }
 
     String cardToken = generateCardToken(issuedCard);
-    log.info("[페이득 카드 등록 성공] 사용자: {}, 카드 ID: {}", request.getUserName(), issuedCard.getCard().getName());
+    log.info(
+        "[페이득 카드 등록 성공] 사용자: {}, 카드 ID: {}", request.getUserName(), issuedCard.getCard().getName());
 
     return CardTokenResponse.builder()
-            .cardId(issuedCard.getCard().getId())
-            .cardToken(cardToken)
-            .build();
+        .cardId(issuedCard.getCard().getId())
+        .cardToken(cardToken)
+        .build();
   }
 
   private boolean isSameUser(IssuedCard issuedCard, CardIssueRequest request) {
     return issuedCard.getUser().getName().equals(request.getUserName())
-            && issuedCard.getUser().getBirthdate().equals(request.getUserBirthDate())
-            && issuedCard.getUser().getPhoneNumber().equals(request.getUserPhone());
+        && issuedCard.getUser().getBirthdate().equals(request.getUserBirthDate())
+        && issuedCard.getUser().getPhoneNumber().equals(request.getUserPhone());
   }
 
   private boolean isValidCard(IssuedCard issuedCard, CardIssueRequest request) {
     return issuedCard.getExpirationMonth().equals(request.getMonth())
-            && issuedCard.getExpirationYear().endsWith(request.getYear())
-            && issuedCard.getCvc().equals(request.getCvc())
-            && issuedCard.getCardPassword().startsWith(request.getPinPrefix());
+        && issuedCard.getExpirationYear().endsWith(request.getYear())
+        && issuedCard.getCvc().equals(request.getCvc())
+        && issuedCard.getCardPassword().startsWith(request.getPinPrefix());
   }
 
   private String generateCardToken(IssuedCard issuedCard) {
     String rawToken =
-            issuedCard.getCardNumber()
-                    + issuedCard.getExpirationMonth()
-                    + issuedCard.getExpirationYear()
-                    + issuedCard.getCvc()
-                    + issuedCard.getCardPassword()
-                    + issuedCard.getUser().getName();
+        issuedCard.getCardNumber()
+            + issuedCard.getExpirationMonth()
+            + issuedCard.getExpirationYear()
+            + issuedCard.getCvc()
+            + issuedCard.getCardPassword()
+            + issuedCard.getUser().getName();
 
     try {
       MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
