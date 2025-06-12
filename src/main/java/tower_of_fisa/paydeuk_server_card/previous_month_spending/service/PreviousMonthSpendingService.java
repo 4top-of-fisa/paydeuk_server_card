@@ -3,8 +3,6 @@ package tower_of_fisa.paydeuk_server_card.previous_month_spending.service;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import tower_of_fisa.paydeuk_server_card.global.common.ErrorDefineCode;
-import tower_of_fisa.paydeuk_server_card.global.config.exception.custom.exception.NoSuchElementFoundException404;
 import tower_of_fisa.paydeuk_server_card.previous_month_spending.dto.PreviousMonthSpendingRequest;
 import tower_of_fisa.paydeuk_server_card.previous_month_spending.dto.PreviousMonthSpendingResponse;
 import tower_of_fisa.paydeuk_server_card.previous_month_spending.repository.PreviousMonthSpendingRepository;
@@ -25,7 +23,7 @@ public class PreviousMonthSpendingService {
   public PreviousMonthSpendingResponse getRecord(
       PreviousMonthSpendingRequest previousMonthSpendingRequest) {
     return previousMonthSpendingRepository
-            .findValueByCardToken(previousMonthSpendingRequest.getCardToken())
-            .orElse(new PreviousMonthSpendingResponse(0));
+        .findValueByCardToken(previousMonthSpendingRequest.getCardToken())
+        .orElse(new PreviousMonthSpendingResponse(0));
   }
 }
