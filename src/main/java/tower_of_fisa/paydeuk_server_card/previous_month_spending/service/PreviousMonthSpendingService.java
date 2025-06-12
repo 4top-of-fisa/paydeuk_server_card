@@ -25,7 +25,7 @@ public class PreviousMonthSpendingService {
   public PreviousMonthSpendingResponse getRecord(
       PreviousMonthSpendingRequest previousMonthSpendingRequest) {
     return previousMonthSpendingRepository
-        .findValueByCardToken(previousMonthSpendingRequest.getCardToken())
-        .orElseThrow(() -> new NoSuchElementFoundException404(ErrorDefineCode.CARD_NOT_FOUND));
+            .findValueByCardToken(previousMonthSpendingRequest.getCardToken())
+            .orElse(new PreviousMonthSpendingResponse(0));
   }
 }
